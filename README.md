@@ -53,6 +53,7 @@ This plugin supports the following options under the `@lambda-env-vars` pragma:
 ### Sandbox
 
 Running `arc sandbox` will run your lambdas locally with the correct env variables defined.
+In sandbox another convenience env variable will exist: `DYNAMODB_ENDPOINT` to be used by your dynamodb client. In deployed environments this will be undefined and your clients should automatically connect to the right endpoint/region based on aws lambda injected vars.
 
 ## Sample Application
 
