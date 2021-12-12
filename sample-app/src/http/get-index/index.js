@@ -1,4 +1,6 @@
 // learn more about HTTP functions here: https://arc.codes/http
+const { Database } = require('@architect/shared/database');
+
 exports.handler = async function http (req) {
   return {
     statusCode: 200,
@@ -8,40 +10,88 @@ exports.handler = async function http (req) {
     },
     body: `
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
   <title>Architect</title>
-  <style>
-     * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; } .max-width-320 { max-width: 20rem; } .margin-left-8 { margin-left: 0.5rem; } .margin-bottom-16 { margin-bottom: 1rem; } .margin-bottom-8 { margin-bottom: 0.5rem; } .padding-32 { padding: 2rem; } .color-grey { color: #333; } .color-black-link:hover { color: black; } 
-  </style>
 </head>
-<body class="padding-32">
-  <div class="max-width-320">
-    <img src="https://assets.arc.codes/logo.svg" />
-    <div class="margin-left-8">
-      <div class="margin-bottom-16">
-        <h1 class="margin-bottom-16">
-          Hello from an Architect Node.js function!
-        </h1>
-        <p class="margin-bottom-8">
-          Get started by editing this file at:
-        </p>
-        <code>
-          sample-app/src/http/get-index/index.js
-        </code>
-      </div>
-      <div>
-        <p class="margin-bottom-8">
-          View documentation at:
-        </p>
-        <code>
-          <a class="color-grey color-black-link" href="https://arc.codes">https://arc.codes</a>
-        </code>
-      </div>
-    </div>
-  </div>
+<body>
+<script>
+    function toggleDark() {
+      let htmlEl = document.getElementsByTagName('html')[0];
+      let isDark = htmlEl.getAttribute('data-theme') === "dark";
+      htmlEl.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    }
+    function addTask(form) {
+      let formData = new FormData(form);
+      let task = formData.get('task');
+      if (task) {
+        form.reset();
+        fetch('/add-task', { 
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ task: task }) 
+        }).then(function(resp) {
+          getListItems();
+        });
+        return false;
+      }
+    }
+    function deleteTask(taskId) {
+      fetch('/delete-task', { 
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: taskId }) 
+      }).then(function(resp) {
+        getListItems();
+      });
+    }
+    function getListItems() {
+      fetch('/list-tasks').then(function(resp) {
+        resp.json().then(function(tasks) {
+          console.log('tasks', tasks);
+          let todosEl = document.getElementById('todos');
+          let taskEls = document.createDocumentFragment();
+          let tasksHtml = "";
+          tasks.forEach(function(task) {
+            tasksHtml += \`<tr><td width="40"><input type="checkbox" onclick="deleteTask('\${task.id}')" name="done"></td><td>\${task.task}</td></tr>\`;
+          });
+          todosEl.innerHTML = tasksHtml;
+        });
+      });
+    }
+    getListItems();
+</script>
+  <main class="container-fluid">
+        <h3 class="margin-bottom-16">
+          <input type="checkbox" id="switch" name="switch" role="switch" onchange="toggleDark()">
+      Test Todo app for arc-plugin-lambda-env
+        </h3>
+        <form onsubmit="addTask(this); return false;">
+          <div class="grid">
+              <input type="text" name="task" placeholder="Type task...">
+              <button type="submit"">Add Task</button>
+          </div>
+        </form>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col" colspan="2">Todos</th>
+            </tr>
+          </thead>
+          <tbody id="todos">
+            
+          </tbody>
+        </table>
+  </main>
 </body>
 </html>
 `
