@@ -30,7 +30,8 @@
     "@architect/package": "^7.0.1",
     "eslint": "^8.0.0",
     "fs-extra": "^9.1.0",
-    "jasmine": "^3.6.4"
+    "jasmine": "^3.6.4",
+    "semantic-release": "^18.0.1"
   },
   "dependencies": {
     "@architect/utils": "^3.0.2"
@@ -50,5 +51,10 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }
