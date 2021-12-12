@@ -21,8 +21,10 @@ After installing add `@plugins` and `@lambda-env-vars` pragmas to your `app.arc`
 ```arc
 @app
 myapp
+
 @http
 get /
+
 @tables
 mytable
   pk *String
@@ -30,10 +32,12 @@ mytable
 tabletwo
   pk *String
   sk **String
+
 @lambda-env-vars
 tables
   mytable MY_APP_TABLE_NAME
   tabletwo TABLE_TWO_NAME
+
 @plugins
 arc-plugin-lambda-env
 ```
@@ -57,6 +61,9 @@ directory, `npm install` and you can run locally via `arc sandbox` or deploy to
 the internet via `arc deploy`.
 
 ## ⚠️ Known Issues
+
+### Sandbox does not inject lambda env variables
+Local sandbox does not inject lambda env variables for architect cli v9.0.3 and above. See: https://github.com/stefangomez/arc-plugin-lambda-env/issues/1 
 
 ### Only @tables (dynamodb) supported
 I'll be adding support for injecting other resources identifiers as environment variables to your lambdas like `@events` (sns) and `@queues` (sqs).

@@ -1,0 +1,12 @@
+{
+  "name": "sample-app",
+  "version": "0.0.0",
+  "description": "A fresh new Architect project!",
+  "scripts": {
+    "start": "ARC_TABLES_PORT=5001 npx sandbox"
+  },
+  "devDependencies": {
+    "@architect/architect": "9.0.2",
+    "arc-plugin-lambda-env": "^0.0.1"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "arc-plugin-lambda-env",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Arc serverless framework (arc.codes) plugin for adding env variables to your lambdas from architect created resources",
   "main": "index.js",
   "scripts": {
@@ -26,18 +26,11 @@
   "homepage": "https://github.com/stefangomez/arc-plugin-lambda-env#README",
   "devDependencies": {
     "@architect/eslint-config": "^1.0.0",
-    "@architect/inventory": "^1.3.2",
-    "@architect/package": "^6.2.0",
-    "@architect/parser": "^2.1.3",
+    "@architect/utils": "^3.0.2",
+    "aws-sdk": "2.880.0",
     "eslint": "^7.19.0",
     "jasmine": "^3.6.4",
     "typescript": "^4.3.2"
-  },
-  "dependencies": {
-    "@architect/utils": "^3.0.2",
-    "babel-plugin-module-resolver": "^4.1.0",
-    "fs-extra": "^9.0.0",
-    "glob": "^7.1.6"
   },
   "eslintConfig": {
     "extends": "@architect/eslint-config",
