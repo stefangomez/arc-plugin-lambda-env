@@ -14,7 +14,6 @@ describe('arc-plugin-lambda-env', () => {
         // Set up integration test directory as a copy of sample app
         const appPluginDir = join(appDir, 'node_modules', 'arc-plugin-lambda-env');
         await fs.mkdirp(appPluginDir);
-        await fs.mkdirp(sampleAppSharedDir);
         await fs.copy(join(sampleDir, 'app.arc'), join(appDir, 'app.arc'));
         await fs.copy(join(__dirname, '..', 'index.js'), join(appPluginDir, 'index.js'));
         process.chdir(appDir);
@@ -41,7 +40,7 @@ describe('arc-plugin-lambda-env', () => {
         afterAll(() => {
             jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
         });
-        it('compiles function typescript code into JS on startup and removes compiled JS on shutdown', (done) => {
+        it('adds environment variables for sandbox', (done) => {
             plugin.sandbox.start({ arc }, (err) => {
                 expect(err).toBeUndefined();
                 expect(process.env.DYNAMODB_ENDPOINT).toBeDefined();
