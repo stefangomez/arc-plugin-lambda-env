@@ -13,9 +13,11 @@ describe('arc-plugin-lambda-env', () => {
     beforeAll(async () => {
         // Set up integration test directory as a copy of sample app
         const appPluginDir = join(appDir, 'node_modules', 'arc-plugin-lambda-env');
+        const sampleAppSharedDir = join(appDir, 'node_modules', '@architect', 'shared');
         await fs.mkdirp(appPluginDir);
         await fs.copy(join(sampleDir, 'app.arc'), join(appDir, 'app.arc'));
         await fs.copy(join(__dirname, '..', 'index.js'), join(appPluginDir, 'index.js'));
+        await fs.copy(join(sampleDir, 'src', 'shared', 'database.js'), join(sampleAppSharedDir, 'database.js'));
         process.chdir(appDir);
         inv = await inventory({});
         arc = inv.inv._project.arc;
