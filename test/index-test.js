@@ -15,6 +15,7 @@ describe('arc-plugin-lambda-env', () => {
         const appPluginDir = join(appDir, 'node_modules', 'arc-plugin-lambda-env');
         const sampleAppSharedDir = join(appDir, 'node_modules', '@architect', 'shared');
         await fs.mkdirp(appPluginDir);
+        await fs.mkdirp(sampleAppSharedDir);
         await fs.copy(join(sampleDir, 'app.arc'), join(appDir, 'app.arc'));
         await fs.copy(join(__dirname, '..', 'index.js'), join(appPluginDir, 'index.js'));
         await fs.copy(join(sampleDir, 'src', 'shared', 'database.js'), join(sampleAppSharedDir, 'database.js'));
