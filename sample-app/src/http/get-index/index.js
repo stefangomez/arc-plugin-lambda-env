@@ -1,14 +1,12 @@
 // learn more about HTTP functions here: https://arc.codes/http
-const { Database } = require('@architect/shared/database');
-
-exports.handler = async function http (req) {
-  return {
-    statusCode: 200,
-    headers: {
-      'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
-      'content-type': 'text/html; charset=utf8'
-    },
-    body: `
+exports.handler = async function http () {
+    return {
+        statusCode: 200,
+        headers: {
+            'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
+            'content-type': 'text/html; charset=utf8'
+        },
+        body: `
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -95,5 +93,5 @@ exports.handler = async function http (req) {
 </body>
 </html>
 `
-  }
-}
+    };
+};
