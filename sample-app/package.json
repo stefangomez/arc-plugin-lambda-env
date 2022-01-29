@@ -10,7 +10,7 @@
     "cuid": "^2.1.8"
   },
   "devDependencies": {
-    "@architect/architect": "9.0.2",
+    "@architect/architect": "^10.0.0-RC.1",
     "arc-plugin-lambda-env": "^0.0.3"
   }
 }
