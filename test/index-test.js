@@ -18,6 +18,7 @@ describe('arc-plugin-lambda-env', () => {
         await fs.copy(join(__dirname, '..', 'index.js'), join(appPluginDir, 'index.js'));
         process.chdir(appDir);
         inv = await inventory({});
+        inv.inv._arc.deployStage = 'testing';
         arc = inv.inv._project.arc;
     });
     afterAll(async () => {
@@ -27,7 +28,7 @@ describe('arc-plugin-lambda-env', () => {
     describe('cloudformation packaging', () => {
         it('adds environment variable for sample-app ddb table name to lambda', () => {
             const cloudformation = pkg(inv);
-            const result = plugin.package({ arc, cloudformation, inventory: inv });
+            const result = plugin.deploy.start({ arc, cloudformation, inventory: inv });
             const lambdaEnvVarsObj = result.Resources.GetListTasksHTTPLambda.Properties.Environment.Variables;
             const lambdaEnvVars = Object.keys(lambdaEnvVarsObj);
             expect(lambdaEnvVars).toContain('TASKS_TABLE_NAME');
@@ -40,13 +41,10 @@ describe('arc-plugin-lambda-env', () => {
         afterAll(() => {
             jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
         });
-        it('adds environment variables for sandbox', (done) => {
-            plugin.sandbox.start({ arc }, (err) => {
-                expect(err).toBeUndefined();
-                expect(process.env.DYNAMODB_ENDPOINT).toBeDefined();
-                expect(process.env.TASKS_TABLE_NAME).toEqual('sample-app-staging-tasks');
-                done();
-            });
+        it('adds environment variables for sandbox', () => {
+            const updatedEnvVars = plugin.set.env({ inventory: inv });
+            expect(updatedEnvVars.testing.DYNAMODB_ENDPOINT).toBeDefined();
+            expect(updatedEnvVars.testing.TASKS_TABLE_NAME).toEqual('sample-app-staging-tasks');
         });
     });
 });

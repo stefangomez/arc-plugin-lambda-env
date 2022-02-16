@@ -55,7 +55,6 @@ exports.handler = async function http () {
     function getListItems() {
       fetch('/list-tasks').then(function(resp) {
         resp.json().then(function(tasks) {
-          console.log('tasks', tasks);
           let todosEl = document.getElementById('todos');
           let taskEls = document.createDocumentFragment();
           let tasksHtml = "";

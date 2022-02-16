@@ -58,13 +58,13 @@ In sandbox another convenience env variable will exist: `DYNAMODB_ENDPOINT` to b
 ## Sample Application
 
 There is a sample application located under `sample-app/`. `cd` into that
-directory, `npm install` and you can run locally via `arc sandbox` or deploy to
-the internet via `arc deploy`.
+directory, `npm install` and you can run locally via `npm start` or `npx arc sandbox` or deploy to
+the internet via `npx arc deploy`.
 
 ## ⚠️ Known Issues
 
-### Sandbox does not inject lambda env variables
-Local sandbox does not inject lambda env variables for architect cli v9.0.3 and above. See: https://github.com/stefangomez/arc-plugin-lambda-env/issues/1 
+### Supported architect versions
+This plugin will work for architect version 10.0.0-RC.7 and above. Please use version `0.1.0` of this plugin if you have architect version 9.0.2 or below. Any versions in between are currently not supported
 
 ### Only @tables (dynamodb) supported
 I'll be adding support for injecting other resources identifiers as environment variables to your lambdas like `@events` (sns) and `@queues` (sqs).
