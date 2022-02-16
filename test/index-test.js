@@ -43,7 +43,6 @@ describe('arc-plugin-lambda-env', () => {
         });
         it('adds environment variables for sandbox', () => {
             const updatedEnvVars = plugin.set.env({ inventory: inv });
-            expect(updatedEnvVars.testing.DYNAMODB_ENDPOINT).toBeDefined();
             expect(updatedEnvVars.testing.TASKS_TABLE_NAME).toEqual('sample-app-staging-tasks');
         });
     });

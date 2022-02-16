@@ -30,11 +30,10 @@ module.exports = {
             const { arc } = inv.inventory.inv._project;
             const appName = arc['app'][0];
             const lambdaEnvVars = arc['lambda-env-vars'] || [ {} ];
-            const tablesPort = Number(process.env.ARC_TABLES_PORT) || 5000;
             // TODO: handle more than just `tables`
             // TODO: dry up reused code below
             const { tables } = lambdaEnvVars[0] || {};
-            let envVars = { testing: { DYNAMODB_ENDPOINT: `http://localhost:${tablesPort}` } };
+            let envVars = { testing: { } };
             if (tables) {
                 Object.keys(tables).forEach(tableName => {
                     const envVarName = tables[tableName];
