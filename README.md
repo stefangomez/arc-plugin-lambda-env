@@ -58,8 +58,8 @@ In sandbox another convenience env variable will exist: `DYNAMODB_ENDPOINT` to b
 ## Sample Application
 
 There is a sample application located under `sample-app/`. `cd` into that
-directory, `npm install` and you can run locally via `arc sandbox` or deploy to
-the internet via `arc deploy`.
+directory, `npm install` and you can run locally via `npm start` or `npx arc sandbox` or deploy to
+the internet via `npx arc deploy`.
 
 ## ⚠️ Known Issues
 
