@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "A fresh new Architect project!",
   "scripts": {
-    "start": "ARC_TABLES_PORT=5001 npx sandbox"
+    "start": "npx sandbox"
   },
   "dependencies": {
     "aws-sdk": "^2.880.0",

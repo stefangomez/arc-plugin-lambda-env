@@ -1,8 +1,12 @@
 const AWS = require('aws-sdk');
 const cuid = require('cuid');
 
+const DYNAMODB_SANDBOX_PORT = process.env.ARC_TABLES_PORT || (process.env.ARC_SANDBOX &&
+  (JSON.parse(process.env.ARC_SANDBOX) || { ports: {} }).ports.tables);
+const DYNAMODB_SANDBOX_ENDPOINT = DYNAMODB_SANDBOX_PORT && `http://localhost:${DYNAMODB_SANDBOX_PORT}`;
+
 const docClient = new AWS.DynamoDB.DocumentClient({
-    endpoint: process.env.DYNAMODB_ENDPOINT || undefined,
+    endpoint: DYNAMODB_SANDBOX_ENDPOINT || undefined,
     apiVersion: '2012-08-10',
 });
 
