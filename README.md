@@ -52,8 +52,9 @@ This plugin supports the following options under the `@lambda-env-vars` pragma:
 
 ### Sandbox
 
-Running `arc sandbox` will run your lambdas locally with the correct env variables defined. In order to 
-In sandbox, you'll need to write code to determine what the local dynamodb endpoint is. See an example in the [sample-app code](https://github.com/stefangomez/arc-plugin-lambda-env/blob/3d22b969fdfbade0952602b79539e0ea9e5ebb24/sample-app/src/shared/database.js#L4). Arc 10 adds a `ARC_SANDBOX` ENV variable containing a JSON string that can be parsed to find the locally running port in `ports.tables`. In deployed environments `ARC_SANDBOX` will be undefined and your clients should automatically connect to the right endpoint/region based on aws lambda injected vars.
+Running `arc sandbox` will run your lambdas locally with the correct env variables defined.
+
+In sandbox, you'll need to write code to determine what the local dynamodb endpoint is. See an example in the [sample-app code](https://github.com/stefangomez/arc-plugin-lambda-env/blob/3d22b969fdfbade0952602b79539e0ea9e5ebb24/sample-app/src/shared/database.js#L4). Arc 10 adds a `ARC_SANDBOX` ENV variable containing a JSON string that can be parsed to find the locally running port in `ports.tables`. In deployed environments `ARC_SANDBOX` will be undefined and your AWS DynamoDB clients should automatically connect to the right endpoint/region based on aws lambda injected vars.
 
 ## Sample Application
 
