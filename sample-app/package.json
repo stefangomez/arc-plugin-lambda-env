@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "@architect/architect": "^10.0.0-RC.7",
-    "arc-plugin-lambda-env": "^0.0.3"
+    "arc-plugin-lambda-env": "^0.1.0"
   }
 }
