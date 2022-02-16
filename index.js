@@ -18,9 +18,7 @@ module.exports = {
             resourceKeys.forEach(key => {
                 const resource = cfn.Resources[key];
                 if (resource.Type === 'AWS::Serverless::Function') {
-                    console.log(`processing function ${key}`);
                     resource.Properties.Environment = resource.Properties.Environment || { Variables: {} };
-                    console.log(resource.Properties.Environment.Variables);
                     resource.Properties.Environment.Variables = { ...resource.Properties.Environment.Variables, ...envVarsToAdd };
                 }
             });
@@ -43,7 +41,6 @@ module.exports = {
                     envVars.testing[envVarName] = `${appName}-staging-${tableName}`;
                 });
             }
-            console.log('envVars', envVars);
             return envVars;
         }
     },

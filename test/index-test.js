@@ -41,13 +41,10 @@ describe('arc-plugin-lambda-env', () => {
         afterAll(() => {
             jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
         });
-        it('adds environment variables for sandbox', (done) => {
-            plugin.sandbox.start({ inventory: inv }, (err) => {
-                expect(err).toBeUndefined();
-                expect(inv.inv._project.env.local.testing.DYNAMODB_ENDPOINT).toBeDefined();
-                expect(inv.inv._project.env.local.testing.TASKS_TABLE_NAME).toEqual('sample-app-staging-tasks');
-                done();
-            });
+        it('adds environment variables for sandbox', () => {
+            const updatedEnvVars = plugin.set.env({ inventory: inv });
+            expect(updatedEnvVars.testing.DYNAMODB_ENDPOINT).toBeDefined();
+            expect(updatedEnvVars.testing.TASKS_TABLE_NAME).toEqual('sample-app-staging-tasks');
         });
     });
 });
