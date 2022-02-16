@@ -1,4 +1,4 @@
-# arc-plugin-lambda-env
+# arc-plugin-lambda-env&nbsp;&nbsp;<a href="https://badge.fury.io/js/arc-plugin-lambda-env"><img alt="npm version" src="https://badge.fury.io/js/arc-plugin-lambda-env.svg"></a>
 
 > Arc serverless framework (arc.codes) plugin for adding env variables to your lambdas from architect created resources
 
@@ -64,7 +64,7 @@ the internet via `npx arc deploy`.
 ## ⚠️ Known Issues
 
 ### Supported architect versions
-This plugin will work for architect version `10.0.0-RC.7` and above. Please use version `0.1.0` of this plugin if you have architect version `9.0.2` or below. Any versions in between are currently not supported
+This plugin will work for architect version `10.0.0-RC.2` and above. Please use version `0.1.0` of this plugin if you have architect version `9.0.2` or below. Any versions in between are currently not supported
 
 ### Only @tables (dynamodb) supported
 I'll be adding support for injecting other resources identifiers as environment variables to your lambdas like `@events` (sns) and `@queues` (sqs).
