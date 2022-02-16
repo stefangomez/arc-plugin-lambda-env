@@ -64,7 +64,7 @@ the internet via `npx arc deploy`.
 ## ⚠️ Known Issues
 
 ### Supported architect versions
-This plugin will work for architect version 10.0.0-RC.7 and above. Please use version `0.1.0` of this plugin if you have architect version 9.0.2 or below. Any versions in between are currently not supported
+This plugin will work for architect version `10.0.0-RC.7` and above. Please use version `0.1.0` of this plugin if you have architect version `9.0.2` or below. Any versions in between are currently not supported
 
 ### Only @tables (dynamodb) supported
 I'll be adding support for injecting other resources identifiers as environment variables to your lambdas like `@events` (sns) and `@queues` (sqs).
